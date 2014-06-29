@@ -1,0 +1,43 @@
+<div class="weatherPage">
+	<div class="loading" ng-if="!ready">
+		<div class="center">
+			<div class="indicator">
+				<img src="img/loading.svg" width="70" alt=""/>
+			</div>
+		</div>
+		<a class="rety_button" href="javascript:;" ng-click="refreshWeather()"><img src="img/reload.svg" width="20" alt="" align="absmiddle"/> Retry</a>
+	</div>
+	<div ng-if="ready">
+		<div class="content">
+			<img ng-src="img/weather/{{icon}}.svg" width="70%" alt=""/>
+			<h1 class="temp">
+				{{model.metric == 'C' ? celsius : fahrenheit}}<sup class="lbl">&deg;{{model.metric}}</sup>
+			</h1>
+			<h2 class="desc">{{weather.description}}</h2>
+			<h4 ng-if="location_name && location_name !== 'Earth'">{{location_name}}</h4>
+		</div>
+
+		<div class="toolbar">
+			<a href="javascript:;" ng-click="refreshWeather()"><img src="img/reload.svg" width="35" alt=""/></a>
+			<a href="javascript:;" ng-click="model.show_settings = true"><img src="img/gear.svg" width="35" alt=""/></a>
+		</div>
+	</div>
+</div>
+<div class="modal {{model.show_settings ? 'show' : ''}}">
+	<div class="modal-content">
+		<h3>
+			Settings
+			<a class="close_button" href="javascript:;" ng-click="model.show_settings = false">&times;</a>
+		</h3>
+		<div>
+			<p>
+				<a href="javascript:;" class="btn block" ng-click="set_location()">Location: {{location_name}}</a>
+			</p>
+			<p>
+				<a href="javascript:;" class="btn split {{model.metric == 'C' ? 'active' : ''}}" ng-click="set_metric('C')">Celsius</a>
+				<a href="javascript:;" class="btn split {{model.metric == 'F' ? 'active' : ''}}" ng-click="set_metric('F')">Fahrenheit</a>
+			</p>
+		</div>
+	</div>
+	<div class="modal-overlay"></div>
+</div>

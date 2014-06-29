@@ -1,0 +1,15 @@
+{
+	"name": "Weather",
+	"main": "index.html",
+	"version": "1.0.0",
+	"single-instance": true,
+	"window": {
+		"title": "Weather",
+		"width": 450,
+		"height": 650,
+		//"toolbar": false,
+		"resizable": false,
+		"fullscreen": false
+	},
+	"chromium-args": "--child-clean-exit"
+}
